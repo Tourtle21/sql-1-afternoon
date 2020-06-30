@@ -1,0 +1,203 @@
+**************PERSON********************
+
+**Step 1**
+create table person (
+	id serial primary key,
+  name varchar(50),
+  age integer,
+  height integer,
+  city varchar(50),
+  favorite_color varchar(50)
+);
+**Step 2**
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Kaden', 20, 68, 'Haines', 'blue'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Karl', 27, 62, 'Washington', 'azure'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Adelin', 18, 42, 'Washington', 'black'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Lora', 40, 48, 'Washington', 'purple'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Shaira', 22, 58, 'North Quezon', 'blue'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Kyanne', 16, 50, 'Washington', 'red'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Randy', 44, 70, 'Washington', 'orange'
+)
+returning *;
+insert into person (
+  name, age, height, city, favorite_color
+) values (
+  'Megan', 14, 44, 'Washington', 'yellow'
+)
+returning *;
+**Step 3**
+select * from person order by height desc
+**Step 4**
+select * from person order by height
+**Step 5**
+select * from person order by age desc
+**Step 6**
+select * from person where age > 20
+**Step 7**
+select * from person where age = 18;
+**Step 8**
+select * from person where age < 20 or age > 30 order by age desc;
+**Step 9**
+select * from person where age != 27;
+**Step 10**
+select * from person where favorite_color != 'red';
+**Step 11**
+select * from person where favorite_color != 'red' and favorite_color != 'blue';
+**Step 12**
+select * from person where favorite_color = 'orange' or favorite_color = 'green';
+**Step 13**
+select * from person where favorite_color in ('orange', 'green', 'blue');
+**Step 14**
+select * from person where favorite_color in ('yellow', 'purple');
+
+**************ORDERS**********************
+
+**Step 1**
+create table orders (
+	order_id serial primary key,
+  person_id integer,
+  product_name varchar(50),
+  product_price float,
+  quantity integer
+);
+**Step 2**
+insert into orders (
+  person_id, product_name, product_price, quantity
+) values (
+  2, 'Popcorn', 5.25, 2
+)
+returning *;
+insert into orders (
+  person_id, product_name, product_price, quantity
+) values (
+  2, 'Oil', 12.15, 1
+)
+returning *;
+insert into orders (
+  person_id, product_name, product_price, quantity
+) values (
+  1, 'salt', 0.50, 6
+)
+returning *;
+insert into orders (
+  person_id, product_name, product_price, quantity
+) values (
+  6, 'Cheetohs', 5.00, 4
+)
+returning *;
+insert into orders (
+  person_id, product_name, product_price, quantity
+) values (
+  4, 'Cream Soda', 7.99, 3
+)
+returning *;
+**Step 3**
+select * from orders;
+**Step 4**
+select sum(quantity) from orders;
+**Step 5**
+select sum(quantity * product_price) from orders;
+**Step 6**
+select sum(quantity * product_price) from orders where person_id = 2;
+
+*************ARTIST****************
+
+**Step 1**
+insert into artist (
+	name
+) values (
+	'Alex'
+)
+returning *;
+insert into artist (
+	name
+) values (
+	'Heather'
+)
+returning *;
+insert into artist (
+	name
+) values (
+	'Princess Amberlin Drake'
+)
+**Step 2**
+select * from artist order by name desc limit 10;
+**Step 3**
+select * from artist order by name limit 5;
+**Step 4**
+select * from artist where name like 'Black%';
+**Step 5**
+select * from artist where name like '%Black%';
+
+**************EMPLOYEE********************
+
+**Step 1**
+select first_name, last_name from customer where city = 'Calgary';
+**Step 2**
+select max(birth_date) from employee;
+**Step 3**
+select min(birth_date) from employee;
+**Step 4**
+select * from employee where reports_to = (select employee_id from employee where first_name = 'Nancy' and last_name = 'Edwards');
+**Step 5**
+select count(*) from employee where city = 'Lethbridge';
+
+**************INVOICE********************
+
+**Step 1**
+select count(*) from invoice where billing_country = 'USA';
+**Step 2**
+select max(total) from invoice;
+**Step 3**
+select min(total) from invoice;
+**Step 4**
+select * from invoice where total > 5;
+**Step 5**
+select count(*) from invoice where total < 5;
+**Step 6**
+select count(*) from invoice where billing_state in ('CA', 'TX', 'AZ');
+**Step 7**
+select avg(total) from invoice;
+**Step 8**
+select sum(total) from invoice;
+
+
+
+
+
+
+
+
